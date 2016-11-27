@@ -49,6 +49,9 @@ namespace DoIt
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddDbContext<ActivityContext>(options =>
+    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
@@ -94,6 +97,8 @@ namespace DoIt
                 ClientId = Configuration["AppSettings:GoogleClientId"],
                 ClientSecret = Configuration["AppSettings:GoogleClientSecret"]
             });
+
+            
 
             app.UseMvc(routes =>
             {
